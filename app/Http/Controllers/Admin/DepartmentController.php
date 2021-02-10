@@ -14,32 +14,27 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        /*$employee_in = Department::leftJoin('users', function ($join) {
-            $join->on('departments.id', '=', 'users.dep_id');
-        })->select('departments.id', 'departments.dep_name', DB::raw('count(users.id) as totalEmployees'))
-            ->groupBy('departments.id', 'departments.dep_name')
-            ->get();
-        return view('department.index')->with(['department' => $employee_in, 'total' => count($employee_in)]);
-		*/
-		
-		$departments = Department::leftJoin('users', function ($join) {
-            $join->on('departments.id', '=', 'users.dep_id');
-        })->select('departments.id', 'departments.dep_name','departments.logo',DB::raw('count(users.id) as totalEmployees')
-        )
-        ->groupBy('departments.id', 'departments.dep_name','departments.logo')
-        ->get();
-        $focal_person=array();
 
-        foreach($departments as $dep)
-        {
-            $user = User::where('dep_id',$dep->id)->where('users.usertype', 'department_admin')->first();
-            if($user)
-                $focal_person[$dep->id]=$user;
+        $departments = Department::leftJoin('users', function ($join) {
+            $join->on('departments.id', '=', 'users.dep_id');
+        })->select(
+            'departments.id',
+            'departments.dep_name',
+            'departments.logo',
+            DB::raw('count(users.id) as totalEmployees')
+        )
+            ->groupBy('departments.id', 'departments.dep_name', 'departments.logo')
+            ->get();
+        $focal_person = array();
+
+        foreach ($departments as $dep) {
+            $user = User::where('dep_id', $dep->id)->where('users.usertype', 'department_admin')->first();
+            if ($user)
+                $focal_person[$dep->id] = $user;
         }
         $total = count($departments);
 
-        return view('department.index',compact('focal_person','total','departments'));
-		
+        return view('department.index', compact('focal_person', 'total', 'departments'));
     }
 
     public function store(Request $request)
@@ -90,7 +85,7 @@ class DepartmentController extends Controller
         }
         $department->update($request->all());
         return redirect()->back()->with('success', 'Department updated successfully.');
-//        return view('department.edit',compact('department'))->with(['success' =>'scnn']);
+        //        return view('department.edit',compact('department'))->with(['success' =>'scnn']);
     }
 
     public function show(Request $request, Department $department)
@@ -103,14 +98,16 @@ class DepartmentController extends Controller
             ->groupBy('users.emp_type')
             ->get();
 
-        $data = ['notSet' => 0,
+        $data = [
+            'notSet' => 0,
             'permanent' => 0,
             'adhoc' => 0,
             'deputation' => 0,
             'contract' => 0,
             'emp_status' => 0,
             'temporary' => 0,
-            'internee' => 0];
+            'internee' => 0
+        ];
 
 
         foreach ($depEmp as $de) {
@@ -118,13 +115,12 @@ class DepartmentController extends Controller
                 $data['notSet'] = $data['notSet'] + $de['total'];
             else
                 $data[$de['emp_type']] += $de['total'];
-
         }
 
 
         $total_emp = $data['notSet'] + $data['permanent'] + $data['adhoc'] + $data['deputation'] + $data['contract'] + $data['temporary'] + $data['internee'];
 
-//        dd($depEmp);
+        //        dd($depEmp);
         return view('department.show', compact(['department', 'data', 'total_emp']));
     }
 

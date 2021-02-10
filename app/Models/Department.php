@@ -12,15 +12,17 @@ class Department extends Model
     use Notifiable, LogsActivity;
     protected static $logAttributes = ['*'];
 
-    protected $table='departments';
-    protected $fillable = ['dep_name', 'short_name', 'logo','description'];
+    protected $table = 'departments';
+    protected $fillable = ['dep_name', 'short_name', 'logo', 'description', 'website_url'];
 
-    public function user(){
+    public function user()
+    {
         return $this->hasMany(User::class);
     }
 
     //relation with transfers
-    public function transfer(){
+    public function transfer()
+    {
         return $this->hasMany(Transfer::class);
     }
 }

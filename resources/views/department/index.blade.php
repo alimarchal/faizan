@@ -61,16 +61,24 @@
                                                    class="col-md-3">
                                         </div>
 
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1" class="">Website URL</label>
+                                            <input type="text" name="website_url" class="form-control" value="" class="col-md-3">
+                                            {{--<button type="submit" class="btn btn-primary"> Add </button>--}}
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1" class="">Logo</label><br>
+                                            <input type="file" name="filelogo">
+                                        </div>
+
 
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="">Description</label>
                                             <textarea name="description" class="form-control tinymce" placeholder="e.g; CD for Civil Defence"
                                                       class="col-md-3"></textarea>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Logo</label>
-                                            <input type="file" name="filelogo">
-                                        </div>
+                                        
                                         <div class="col-md-12">
                                             <br>
                                         </div>
