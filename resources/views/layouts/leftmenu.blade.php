@@ -15,6 +15,12 @@
             </li>
             
         @endif
+        <li class="{{ 'reporting' == request()->path() ? 'active' : ''  }}" title="Departments">
+            <a href="/reporting">
+                <i class="now-ui-icons location_map-big"></i>
+                <p>Reporting</p>
+            </a>
+        </li>
         <hr style="width: 90%;border-color: rgba(255, 255, 255, 0.5);">
         <li class="{{ 'register/admin' == request()->path() ? 'active' : ''  }}" title="Departments">
             <a href="/register/admin">

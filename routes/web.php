@@ -33,6 +33,8 @@ Route::auth();
 Route::group(['middleware' => ['auth', 'admin']], function () {
     
     Route::get('/dashboard', 'Admin\DashboardController@index');
+    Route::get('/reporting', 'Admin\ReportConroller@index')->name('reporting.index');
+    Route::get('/reporting/show', 'Admin\ReportConroller@show')->name('reporting.show');
     Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/markAsRead', 'Admin\DashboardController@markAsRead')->name('markRead');
     

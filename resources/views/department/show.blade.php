@@ -25,8 +25,6 @@
                     {!! html_entity_decode($department->description, ENT_QUOTES, 'UTF-8') !!}
                     <h3>Employees</h3>
                     <div class="row" id="adminCard">
-
-
                         <div class="col-md-3">
                             <div class="card border-info bg-light border" align="center">
                                 <div class="card-body" style="">
