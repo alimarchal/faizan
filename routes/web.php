@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;
 */
 
 
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -37,10 +36,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     
     Route::get('/dashboard', 'Admin\DashboardController@index');
     Route::get('/reporting/HD', 'Admin\ReportConroller@index')->name('reporting.index');
-     Route::get('/reporting/HEAJK', 'Admin\ReportConroller@HEAJK')->name('reporting.HEAJK');
+    Route::get('/reporting/HEAJK', 'Admin\ReportConroller@HEAJK')->name('reporting.HEAJK');
     Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/markAsRead', 'Admin\DashboardController@markAsRead')->name('markRead');
-    
     Route::get('/employees', 'Admin\DashboardController@allUsers');
     Route::get('/employees/{id}/edit', 'Admin\DashboardController@edit');
     Route::put('/employees/{id}', 'Admin\DashboardController@update');

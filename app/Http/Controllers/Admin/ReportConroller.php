@@ -12,12 +12,14 @@ class ReportConroller extends Controller
 {
    public function index(Request $request)
    {
+
       $users = DB::table('users')
          ->where('dep_id', '13')
-         ->select('designation', 'district', DB::raw('count(district)'))
+         ->select('designation', 'district', DB::raw('count(*)'))
          ->groupBy('district')
-
+         ->groupBy('designation')
          ->get();
+     
       return view('admin.reportingHealth', compact('users'));
    }
    public function HEAJK()
