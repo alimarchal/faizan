@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use App\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -33,8 +36,8 @@ Route::auth();
 Route::group(['middleware' => ['auth', 'admin']], function () {
     
     Route::get('/dashboard', 'Admin\DashboardController@index');
-    Route::get('/reporting', 'Admin\ReportConroller@index')->name('reporting.index');
-    Route::get('/reporting/show', 'Admin\ReportConroller@show')->name('reporting.show');
+    Route::get('/reporting/HD', 'Admin\ReportConroller@index')->name('reporting.index');
+     Route::get('/reporting/HEAJK', 'Admin\ReportConroller@HEAJK')->name('reporting.HEAJK');
     Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/markAsRead', 'Admin\DashboardController@markAsRead')->name('markRead');
     

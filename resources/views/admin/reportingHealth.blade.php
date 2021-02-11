@@ -10,34 +10,70 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    @if (request()->is('reporting/HD'))
                     <table id="example" class="display">
-                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Designation</th>
-                                <th>District</th>
-                                <th>Count</th>
-                            </tr>
-                         </thead>
-                        <tbody>
-                            @foreach ($users as $user)
-                            <tr>
-                             <td>{{ $loop->iteration }}</td>
-                                @foreach ($user as $u)
-                                    <td>{{ $u }} </td>
-                                 @endforeach
-                            </tr>
+                        <thead>
+                           <tr>
+                               <th>#</th>
+                               <th>Designation</th>
+                               <th>District</th>
+                               <th>Count</th>
+                           </tr>
+                        </thead>
+                       <tbody>
+                           @foreach ($users as $user)
+                           <tr>
+                            <td>{{ $loop->iteration }}</td>
+                               @foreach ($user as $u)
+                                   <td>{{ $u }} </td>
+                                @endforeach
+                           </tr>
+                           @endforeach
+                       </tbody>
+                       <tfoot>
+                           <tr>
+                               <th>#</th>
+                               <th>Designation</th>
+                               <th>District</th>
+                               <th>Count</th>
+                           </tr>
+                       </tfoot>
+                   </table>
+                   @else
+                   <table id="example" class="display">
+                    <thead>
+                       <tr>
+                        <th>#</th>
+                        <th>District</th>
+                        <th>Designation</th>
+                        <th>Qualification</th>
+                        <th>Employee </th>
+                        <th>Total</th>
+                       </tr>
+                    </thead>
+                   <tbody>
+                       @foreach ($users as $user)
+                       <tr>
+                        <td>{{ $loop->iteration }}</td>
+                           @foreach ($user as $u)
+                               <td>{{ $u }} </td>
                             @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Designation</th>
-                                <th>District</th>
-                                <th>Count</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                       </tr>
+                       @endforeach
+                   </tbody>
+                   <tfoot>
+                       <tr>
+                           <th>#</th>
+                           <th>District</th>
+                           <th>Designation</th>
+                           <th>Qualification</th>
+                           <th>Employee </th>
+                           <th>Total</th>
+                       </tr>
+                   </tfoot>
+               </table>
+                    @endif
+                   
                 </div>
             </div>
         </div>

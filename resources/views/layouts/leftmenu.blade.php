@@ -16,7 +16,7 @@
             
         @endif
         <li class="{{ 'reporting' == request()->path() ? 'active' : ''  }}" title="Departments">
-            <a href="/reporting">
+            <a href="{{ route('reporting.index') }}">
                 <i class="now-ui-icons location_map-big"></i>
                 <p>Reporting</p>
             </a>
