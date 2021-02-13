@@ -13,14 +13,8 @@
                     <p>Departments</p>
                 </a>
             </li>
-            
         @endif
-        <li class="{{ 'reporting' == request()->path() ? 'active' : ''  }}" title="Departments">
-            <a href="{{ route('reporting.index') }}">
-                <i class="now-ui-icons location_map-big"></i>
-                <p>Reporting</p>
-            </a>
-        </li>
+
         <hr style="width: 90%;border-color: rgba(255, 255, 255, 0.5);">
         <li class="{{ 'register/admin' == request()->path() ? 'active' : ''  }}" title="Departments">
             <a href="/register/admin">
@@ -28,6 +22,14 @@
                 <p>Register User</p>
             </a>
         </li>
+        <li class="{{ 'reports' == request()->path() ? 'active' : ''  }}" title="Departments">
+            <a href="{{ route('report.designationWise') }}">
+                <i class="now-ui-icons location_map-big"></i>
+                <p>Reports</p>
+            </a>
+        </li>
+        
+
         <li class="{{ 'employees' == request()->path() ? 'active' : ''  }}">
             <a href="/employees">
                 <i class="fas fa-user-tie"></i>

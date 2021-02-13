@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -36,16 +37,18 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     
     Route::get('/dashboard', 'Admin\DashboardController@index');
     Route::get('/reporting/HD', 'Admin\ReportConroller@index')->name('reporting.index');
-    Route::get('/reporting/HEAJK', 'Admin\ReportConroller@HEAJK')->name('reporting.HEAJK');
-    Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/markAsRead', 'Admin\DashboardController@markAsRead')->name('markRead');
     Route::get('/employees', 'Admin\DashboardController@allUsers');
     Route::get('/employees/{id}/edit', 'Admin\DashboardController@edit');
     Route::put('/employees/{id}', 'Admin\DashboardController@update');
     Route::get('/employees/{id}/verify', 'Admin\DashboardController@VerifyUser');
-    
     Route::get('/employee_profile/{id}', 'Admin\DashboardController@ViewEmployee');
     Route::resource('departments', 'Admin\DepartmentController');
+    
+    #####################################################
+    Route::get('/reports', 'ReportController@designationWise')->name('report.designationWise');
+    Route::get('/reports/districtwise','ReportController@districtWise')->name('report.districtWise');
+    #####################################################
     #####################################################
     Route::get('/employement-details/{id}/edit', 'Admin\EmployementDetailsController@index');
     Route::post('/employement-details/{id}', 'Admin\EmployementDetailsController@store');
